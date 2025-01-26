@@ -1,52 +1,37 @@
 {
-    "name": "AnimeFLV",
-    "version": "1.0.0",
-    "author": {
-        "name": "sobet",
-        "website": "https://google.com"
-    },
-    "iconURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Animeflv_logo.svg/512px-Animeflv_logo.svg.png",
-    "stream": "MP4",
-    "language": "ES",
-    "extractor": "normal",
-    "module": [
-        {
-            "search": {
-                "url": "https://www3.animeflv.net/browse",
-                "parameter": "q",
-                "documentSelector": ".ListAnimes .ListItem",
-                "title": ".Title",
-                "image": {
-                    "url": ".Image img",
-                    "attribute": "src"
-                },
-                "href": "a"
-            },
-            "featured": {
-                "url": "https://www3.animeflv.net",
-                "documentSelector": ".ListAnimes .ListItem",
-                "title": ".Title",
-                "image": {
-                    "url": ".Image img",
-                    "attribute": "src"
-                },
-                "href": "a"
-            },
-            "details": {
-                "baseURL": "https://www3.animeflv.net",
-                "aliases": {
-                    "selector": ".Ficha .Container .Title",
-                    "attribute": "text"
-                },
-                "synopsis": ".Description",
-                "airdate": ".Container .Date",
-                "stars": ".fa-star"
-            },
-            "episodes": {
-                "selector": ".Container .ListCaps a",
-                "order": "ordered",
-                "pattern": ""
-            }
-        }
-    ]
+  "name": "AnimeFLV",
+  "url": "https://www3.animeflv.net/",
+  "icon": "https://www3.animeflv.net/favicon.ico",
+  "search": {
+    "url": "https://www3.animeflv.net/browse?q={query}",
+    "listItem": ".ListAnimes .fa-play-circle",
+    "title": ".Title",
+    "link": "a@href",
+    "image": "img@src"
+  },
+  "latest": {
+    "url": "https://www3.animeflv.net/",
+    "listItem": ".ListEpisodios .fa-play-circle",
+    "title": ".Title",
+    "link": "a@href",
+    "image": "img@src"
+  },
+  "anime": {
+    "url": "{link}",
+    "title": "h1.Title",
+    "description": ".Description",
+    "image": "div.Ficha img@src",
+    "episodes": {
+      "listItem": "ul.ListEpisodes li",
+      "link": "a@href",
+      "title": ".Title"
+    }
+  },
+  "episode": {
+    "url": "{link}",
+    "video": {
+      "listItem": "iframe",
+      "link": "@src"
+    }
+  }
 }
